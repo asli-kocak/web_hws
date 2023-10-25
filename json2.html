@@ -9,15 +9,29 @@
 </head>
 
 <body>
-    <h1>Any and All Painting Products</h1>
-    <div id="paint_products_list"></div>
+    <h1>Painting Products List</h1>
+
+    <div id="prods_list"></div> 
 
     <script>
         $(document).ready(function() {
-            $.get("products.json", function(data) {
-                var products_string = JSON.stringify(data);
-                document.getElementById('paint_products_list').innerHTML = products_string;
-            });
+            $.get("https://asli-kocak.github.io/web_hws/products.json", 
+                function(data) {
+                    var productArray = data.Products.product;
+
+                    str = "";
+                    productArray.forEach(function(prod) { 
+                        str += "<div class='product'>" +
+                                "<h2>" + prod.Name + "</h2>" + 
+                                "<p><strong>Description:</strong> " + prod.Description + "</p>" + 
+                                "<p><strong>Size:</strong> " + prod.Size.Count + " " + prod.Size.Volume + "</p>" +
+                                "<p><strong>Price:</strong> " + prod.Price + "</p>" + 
+                                "<p><strong>Categories: </br> </br> </strong> " + prod.Category.Level + ", " + prod.Category.Medium + ", " + prod.Category.Item_Type + "</p>" + "</br>" +
+                                "</div>";
+
+                    })
+                    document.getElementById('prods_list').innerHTML = str;  
+                });
         });
     </script>
 </body>
