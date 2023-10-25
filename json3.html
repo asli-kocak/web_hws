@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Painting Products</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <h1>Painting Products List</h1>
+
+    <div id="Categories" class="Categories-content">
+        Level:
+        <select id="Level">
+            <option value="All">All</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="professional">Professional</option>
+        </select>
+        Medium:
+        <select id="Medium">
+            <option value="All">All</option>
+            <option value="oil">Oil</option>
+            <option value="watercolor">Watercolor</option>
+            <option value="acrylic">Acrylic</option>
+        </select>
+        Type:
+        <select id="Type">
+            <option value="All">All</option>
+            <option value="painting-tools">Landscape</option>
+            <option value="paint">Portrait</option>
+            <option value="painting-surface">Abstract</option>
+        </select>
+    </div>
+
+    <button class="filter" onclick="filterProducts();">Filter</button>
+    <div id="prods_list__filtered"></div>
+
+    <div id="prods_list"></div> 
+    <div id="button"></div> 
+    <div id="filter"></div> 
+
+    <script>
+        function filterProducts() {
+            var filterLevel = document.getElementById("Level").value;
+            var filterMedium = document.getElementById("Medium").value;
+            var filterType = document.getElementById("Type").value;
+        }
+
+
+
+        $(document).ready(function() {
+            $.get("https://asli-kocak.github.io/web_hws/products.json", 
+                function(data) {
+                    var productArray = data.Products.product;
+
+                    str = "";
+                    productArray.forEach(function(prod) { 
+                        str += "<div class='product'>" +
+                                "<h2>" + prod.Name + "</h2>" + 
+                                "<p><strong>Description:</strong> " + prod.Description + "</p>" + 
+                                "<p><strong>Size:</strong> " + prod.Size.Count + " " + prod.Size.Volume + "</p>" +
+                                "<p><strong>Price:</strong> " + prod.Price + "</p>" + 
+                                "<p><strong>Categories: </br> </br> </strong> " + prod.Category.Level + ", " + prod.Category.Medium + ", " + prod.Category.Item_Type + "</p>" + "</br>" +
+                                "</div>";
+
+                    })
+                    document.getElementById('prods_list').innerHTML = str;  
+                });
+        });
+    </script>
+</body>
+
+</html>
