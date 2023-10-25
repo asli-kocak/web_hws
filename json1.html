@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+
+
+    </head>
+
+
+    <body>
+        <p id="paint_products_list"></p>
+
+        <script>
+            // put the products in a variable
+            var paint_products = [
+                {
+                    "Name": "Cray-Pas Oil Pastels",
+                    "Description": "Oil pastel crayons for kids and adults",
+                    "Size": {
+                        "Count": "25 Count"
+                    },
+                    "Price": "6$",
+                    "Category": {
+                        "Level": "beginner",
+                        "Medium": "oil",
+                        "Item_Type": "paint"
+                    }
+                },
+                {
+                    "Name": "Liquitex Crimson Red Paint",
+                    "Description": "Satin water-based liquid acrylic",
+                    "Size": {
+                        "Count": "1pc,",
+                        "Volume": "118mL"
+                    },
+                    "Price": "9.36$",
+                    "Category": {
+                        "Level": "intermediate",
+                        "Medium": "acrylic",
+                        "Item_Type": "paint"
+                    }
+                },
+                {
+                    "Name": "Paint Brush Set",
+                    "Description": "Variety pack of synthetic paint brushes",
+                    "Size": {
+                        "Count": "20pg,",
+                        "Volume": "400mg"
+                    },
+                    "Price": "10$",
+                    "Category": {
+                        "Level": "Beginner",
+                        "Medium": ["watercolor", "acrylic"],
+                        "Item_Type": "painting-tools"
+                    }
+                },
+                {
+                    "Name": "Strathmore Acrylic Paper Pad",
+                    "Description": "Durable, heavyweight paper",
+                    "Size": {
+                        "Count": "20pg,",
+                        "Volume": "400mg"
+                    },
+                    "Price": "10$",
+                    "Category": {
+                        "Level": "intermediate",
+                        "Medium": "acrylic",
+                        "Item_Type": "painting-surface"
+                    }
+                },
+                {
+                    "Name": "Talens Art Creation Sketchbook",
+                    "Description": "Sketchbook for mixed media",
+                    "Size": {
+                        "Count": "80pg"
+                    },
+                    "Price": "9.75$",
+                    "Category": {
+                        "Level": ["Beginner","intermediate"],
+                        "Medium": ["pencil","pastel"],
+                        "Item_Type": "painting-surface"
+                    }
+                },
+                {
+                    "Name": "Watercolor Paint Set",
+                    "Description": "Travel watercolor set",
+                    "Size": {
+                        "Count": "48pcs"
+                    },
+                    "Price": "26$",
+                    "Category": {
+                        "Level": ["Beginner","intermediate"],
+                        "Medium": "watercolor",
+                        "Item_Type": "painting-surface"
+                        }
+                },
+                {
+                    "Name": "Apple Barrel Acrylic Paints",
+                    "Description": "Versatile acrylic paint set",
+                    "Size": {
+                        "Count": "16pcs,",
+                        "Volume": "32Oz"
+                    },
+                    "Price": "25$",
+                    "Category": {
+                        "Level": "Beginner",
+                        "Medium": "acrylic",
+                        "Item_Type": "paint"
+                    }
+                },
+                {
+                    "Name": "Canson Watercolor XL",
+                    "Description": "Multipurpose texture paper pad",
+                    "Size": {
+                        "Count": "30pgs,",
+                        "Volume": "300g"
+                    },
+                    "Price": "10$",
+                    "Category": {
+                        "Level": ["intermediate","professional"],
+                        "Medium": ["watercolor","acrylic","pencil"],
+                        "Item_Type": "painting-surface"
+                    }
+                },
+                {
+                    "Name": "Acrylic Paint Pouring Kit",
+                    "Description": "All-in-one kit for creating stunning acrylic pour paintings",
+                    "Size": {
+                        "Count": "5,",
+                        "Volume": "200ml"
+                    },
+                    "Price": "38.99$",
+                    "Category": {
+                        "Level": "Intermediate",
+                        "Medium": "Acrylic",
+                        "Item_Type": "painting-tools"
+                    }
+                },
+                {
+                    "Name": "Watercolor Artist Brush Set",
+                    "Description": "High-quality brushes designed for watercolor painting",
+                    "Size": {
+                        "Count": "8,"
+                    },
+                    "Price": "19.95$",
+                    "Category": {
+                        "Level": ["Intermediate","Hobbiest"],
+                        "Medium": "Watercolor",
+                        "Item_Type": "painting-tools"
+                    }
+                },
+                {
+                    "Name": "Oil Paint Canvas Panels",
+                    "Description": "Canvas panels specially designed for oil painting",
+                    "Size": {
+                        "Count": "25,"
+                    },
+                    "Price": "22.50$",
+                    "Category": {
+                        "Level": ["Beginner","Hobbiest"],
+                        "Medium": ["oil","acrylic"],
+                        "Item_Type": "painting-surface"
+                    }
+                },
+                {
+                    "Name": "Royal & Langnickel Artist Brush Set",
+                    "Description": "Premium quality synthetic brushes for various mediums",
+                    "Size": {
+                        "Count": "15,"
+                    },
+                    "Price": "14.99$",
+                    "Category": {
+                        "Level": ["Professional"],
+                        "Medium": ["Acrylic","Watercolor","Oil"],
+                        "Item_Type": "painting-tools"
+                    }
+                }
+            ]
+
+            // convert the json to a list and display the raw data:
+            document.getElementById("paint_products_list").innerHTML = JSON.stringify(paint_products);
+
+
+        </script>
+    </body>
+</html>

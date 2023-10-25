@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Painting Products</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <h1>Any and All Painting Products</h1>
+    <div id="paint_products_list"></div>
+
+    <script>
+        $(document).ready(function() {
+            $.get("products.json", function(data) {
+                var products_string = JSON.stringify(data);
+                document.getElementById('paint_products_list').innerHTML = products_string;
+            });
+        });
+    </script>
+</body>
+
+</html>
