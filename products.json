@@ -119,7 +119,7 @@
             },
             "Price": "38.99$",
             "Category": {
-                "Level": "Intermediate",
+                "Level": "intermediate",
                 "Medium": "Acrylic",
                 "Item_Type": "painting-tools"
             }
@@ -132,7 +132,7 @@
             },
             "Price": "19.95$",
             "Category": {
-                "Level": ["Intermediate","Hobbiest"],
+                "Level": ["intermediate","Hobbiest"],
                 "Medium": "Watercolor",
                 "Item_Type": "painting-tools"
             }
@@ -158,8 +158,8 @@
             },
             "Price": "14.99$",
             "Category": {
-                "Level": ["Professional"],
-                "Medium": ["Acrylic","Watercolor","Oil"],
+                "Level": ["professional"],
+                "Medium": ["acrylic","watercolor","oil"],
                 "Item_Type": "painting-tools"
             }
         }
