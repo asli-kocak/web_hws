@@ -10,66 +10,90 @@
 
 <body>
     <h1>Painting Products List</h1>
+    <h1> ----------------------------------------------------------------------</h1>
 
-    <div id="Categories" class="Categories-content">
-        Level:
-        <select id="Level">
+    <!-- A dropdown menu with all different cathegories -->
+    <select id="Categories">
             <option value="All">All</option>
             <option value="beginner">Beginner</option>
             <option value="intermediate">Intermediate</option>
             <option value="professional">Professional</option>
-        </select>
-        Medium:
-        <select id="Medium">
-            <option value="All">All</option>
+            <option value="hobbyist">Hobbyist</option>
             <option value="oil">Oil</option>
             <option value="watercolor">Watercolor</option>
             <option value="acrylic">Acrylic</option>
-        </select>
-        Type:
-        <select id="Type">
-            <option value="All">All</option>
-            <option value="painting-tools">Landscape</option>
-            <option value="paint">Portrait</option>
-            <option value="painting-surface">Abstract</option>
+            <option value="pastel">Pastel</option>
+            <option value="painting-tools">Painting tools</option>
+            <option value="paint">Paints</option>
+            <option value="painting-surface">Painting Surfaces</option>
         </select>
     </div>
 
     <button class="filter" onclick="filterProducts();">Filter</button>
     <div id="prods_list__filtered"></div>
 
-    <div id="prods_list"></div> 
-    <div id="button"></div> 
-    <div id="filter"></div> 
+    <h1> ----------------------------------------------------------------------</h1>
+    <div id="prods_list"></div>
 
     <script>
-        function filterProducts() {
-            var filterLevel = document.getElementById("Level").value;
-            var filterMedium = document.getElementById("Medium").value;
-            var filterType = document.getElementById("Type").value;
-        }
+        var productArray;
 
-
-
+        // this is standard what's on the screen
         $(document).ready(function() {
-            $.get("https://asli-kocak.github.io/web_hws/products.json", 
+            $.get("https://asli-kocak.github.io/web_hws/products.json",
+                //data here is what we get from the json list
                 function(data) {
-                    var productArray = data.Products.product;
+                    productArray = data.Products.product;
 
-                    str = "";
-                    productArray.forEach(function(prod) { 
+                    var str = "";
+                    // we make a long string for each object, with all attributes
+                    productArray.forEach(function(prod) {
                         str += "<div class='product'>" +
-                                "<h2>" + prod.Name + "</h2>" + 
-                                "<p><strong>Description:</strong> " + prod.Description + "</p>" + 
-                                "<p><strong>Size:</strong> " + prod.Size.Count + " " + prod.Size.Volume + "</p>" +
-                                "<p><strong>Price:</strong> " + prod.Price + "</p>" + 
-                                "<p><strong>Categories: </br> </br> </strong> " + prod.Category.Level + ", " + prod.Category.Medium + ", " + prod.Category.Item_Type + "</p>" + "</br>" +
-                                "</div>";
+                            "<h2>" + prod.Name + "</h2>" +
+                            "<p><strong>Description:</strong> " + prod.Description + "</p>" +
+                            "<p><strong>Size:</strong> " + prod.Size.Count + " " + prod.Size.Volume + "</p>" +
+                            "<p><strong>Price:</strong> " + prod.Price + "</p>" +
+                            "<p><strong>Categories:</strong> " + prod.Category.Level + ", " + prod.Category.Medium + ", " + prod.Category.Item_Type + "</p>" +
+                            "</div>";
+                    });
 
-                    })
-                    document.getElementById('prods_list').innerHTML = str;  
+                    // we put these on the page.
+                    document.getElementById('prods_list').innerHTML = str;
                 });
         });
+
+        // when filtering button is clicked
+        function filterProducts() {
+            var category_filter = document.getElementById("Categories").value;
+
+            //make a string to hold the values in the list
+            var strf = "";
+
+            //do this for all each product in the productArray 
+            productArray.forEach(function(prod) {
+                if (
+                    // check if category filter and the category of each product matches
+                    (category_filter == "All" || prod.Category.Level == category_filter) ||
+                                                prod.Category.Medium == category_filter || 
+                                                prod.Category.Item_Type === category_filter) {
+
+                    // print exactly the same product description from before if there is a match
+                    strf += "<div class='product'>" +
+                            "<h2>" + prod.Name + "</h2>" +
+                            "<p><strong>Description:</strong> " + prod.Description + "</p>" +
+                            "<p><strong>Size:</strong> " + prod.Size.Count + " " + prod.Size.Volume + "</p>" +
+                            "<p><strong>Price:</strong> " + prod.Price + "</p>" +
+                            "<p><strong>Categories:</strong> " + prod.Category.Level + ", " + prod.Category.Medium + ", " + prod.Category.Item_Type + "</p> </br>" +
+                            "</div>";
+                } 
+            });
+            //if there are no matches, let the user know
+            if (strf == "") {
+                strf += "<p> We are sorry, we don't have any products in that category. </p> "
+            }
+            //print out the filtered elements to the prods_list__filtered html tag
+            document.getElementById('prods_list__filtered').innerHTML = strf;
+        }
     </script>
 </body>
 
