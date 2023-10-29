@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #d85f67; /* Pastel pink background */
+            color: white;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #ffb9cc; /* Pink text color */
+        }
+
+        p {
+            font-size: 16px;
+            color: #ffbdd8; /* Light pink text color */
+        }
+
+        .product-list li {
+            font-size: 18px;
+            color: #ffb9d4; /* Light pink text color */
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Can I use this makeup?</h1>
+
+    <p>
+        This is the "makeup API". When you search a product, it gives you
+        information on it, such as what it is, if it's vegan, fair trade,
+        natural, etc.
+    </p>
+    <p>
+        Source: <a href="http://makeup-api.herokuapp.com/">http://makeup-api.herokuapp.com/</a>
+    </p>
+    <p>
+        I used <strong>"Lipstick"</strong> and <strong>"Pencil"</strong> parameters. 
+        However unfortunately my filters don't work thus they are commented out.
+    </p>
+    <p>
+        This API would be used in a makeup recommendation/magazine website to
+        provide information about makeup products, or if someone's making a website
+        filtering makeup by allergies or ethical concerns.
+    </p>
+    <div id="productList"></div>
+    <!-- <div id="productListFiltered"></div> -->
+
+    <script>
+
+        $(document).ready(function() {
+            // use ajax to make a GET request from API
+            $.ajax({
+                type: "GET",
+                url: "http://makeup-api.herokuapp.com/api/v1/products.json",
+                success: function(data) {
+                    // filterProducts(data);
+                    document.getElementById("productList").innerHTML = displayProductData(data);
+                },
+            });
+
+
+            // display data
+            function displayProductData(products) {
+                var str = "";
+                for (var i = 0; i < products.length; i++) {
+                    var product = products[i];
+                    str += "<li>Name: " + product.name + "</li>" +
+                            "<li>Brand: " + product.brand + "</li>" +
+                            "<li>Price: " + product.price + "</li>" +
+                            "<li>Description: " + product.description + "</li>" +
+                            "<h1>*************************************************</h1>";
+                }
+                return str;
+            }
+        });
+        
+
+        function filterProducts(productArray) {
+            var str = "";
+
+            
+            // uses for each
+            productArray.forEach(function(prod) {
+                if (
+                    (prod.product_category == "lipstick") || (prod.product_category == "pencil")
+                ) {
+
+                    // Display the product information:
+                    str += "<li>Name: " + prod.name + "</li>" +
+                           "<li>Brand: " + prod.brand + "</li>" +
+                           "<li>Price: " + prod.price + "</li>" +
+                           "<li>Description: " + prod.description + "</li>" +
+                           "<h1>*************************************************</h1>";
+                }
+            });
+
+            if (str == "") {
+                str += "<p> We are sorry, we don't have any products in that category. </p> ";
+            }
+
+            document.getElementById('prods_list__filtered').innerHTML = str;
+        }
+
+    </script>
+</body>
+</html>
