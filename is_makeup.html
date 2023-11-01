@@ -59,7 +59,7 @@
             // use ajax to make a GET request from API
             $.ajax({
                 type: "GET",
-                url: "http://makeup-api.herokuapp.com/api/v1/products.json",
+                url: "https://makeup-api.herokuapp.com/api/v1/products.json",
                 success: function(data) {
                     // filterProducts(data);
                     document.getElementById("productList").innerHTML = displayProductData(data);
